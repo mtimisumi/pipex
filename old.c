@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:32:25 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/01/29 18:57:49 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/01/29 19:10:07 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,20 +155,6 @@ char	**ft_split(char const *s, char c)
 	return (litsplit(arr, s, c));
 }
 
-char	*getpath(char **envp)
-{
-	int		i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (strncmp(envp[i], "PATH=", 5)== 0)
-			return (envp[i] += 5);
-		i++;
-	}
-	return (NULL);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
@@ -196,6 +182,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	newstring[i] = '\0';
 	return (newstring);
+}
+
+char	*getpath(char **envp)
+{
+	int		i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (strncmp(envp[i], "PATH=", 5)== 0)
+			return (envp[i] += 5);
+		i++;
+	}
+	return (NULL);
 }
 
 int	main(int argc, char *argv[], char *envp[])
