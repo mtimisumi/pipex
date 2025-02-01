@@ -1,52 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve.c                                           :+:      :+:    :+:   */
+/*   real.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 22:42:13 by mmisumi           #+#    #+#             */
+/*   Created: 2025/01/31 17:29:43 by mmisumi           #+#    #+#             */
 /*   Updated: 2025/02/01 19:52:09 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// int	main(int argc, char *argv[])
-// {
-// 	char	cmd[] = "/bin/cat";
-
-// 	if (execve(cmd, argv, NULL) == -0)
-// 		printf("succesfull");
-// 	else
-// 		return -1;
-
-// }
-
-// int	main(int argc, char *argv[], char *envp[])
-// {
-// 	char	*path;
-// 	int		i;
-// 	int		len;
-
-// 	i = 0;
-// 	while (envp[i])
-// 	{
-// 		path = ft_strnstr(envp[i], "PATH", 4);
-// 		if (path != NULL)
-// 			return(path += 5);
-// 		i++;
-// 	}
-// 	return (-1);
-// }
-
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *envp[])
 {
+	int		fd;
 	int		pipefd[2];
 	pid_t	cpid1;//child id
 	pid_t	cpid2;
 
-
+	fd = open(argv[1], O_RDWR);
 	// if (pipefd == -1)
 	// {
 	// 	perror("pipe failed");
@@ -82,3 +55,6 @@ int	main(int argc, char *argv[])
 
 	return (0);
 }
+
+
+
