@@ -1,0 +1,10 @@
+When a program is run from the command line or terminal, arguments are values supplied to the program. Without changing the application’s source code, they let users give the software inputs or options. Typically separated by spaces, command-line arguments can be used to configure parameters, supply file names, modify program behaviour, and more.
+argc - Argument Count:
+
+argc is an integer variable that represents the number of command-line arguments passed to the program, including the program's name itself. The name "argc" stands for "argument count." This parameter provides valuable information about the number of arguments available for processing within the program.
+argv - Argument Vector:
+
+argv is an array of strings (char*) that holds the actual command-line arguments. The name "argv" stands for "argument vector." Each element of the array represents a command-line argument. The first element (argv[0]) contains the program's name itself, while the subsequent elements (argv[1] to argv[argc-1]) hold the user-provided arguments.
+main Function Signature:
+
+In C, the main the function typically has the following signature to handle command-line arguments:

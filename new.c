@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:32:25 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/01/29 18:04:26 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/01/29 18:47:21 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,20 +155,6 @@ char	**ft_split(char const *s, char c)
 	return (litsplit(arr, s, c));
 }
 
-char	*getpath(char **envp)
-{
-	int		i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (strncmp(envp[i], "PATH=", 5)== 0)
-			return (envp[i] += 5);
-		i++;
-	}
-	return (NULL);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
@@ -198,18 +184,27 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (newstring);
 }
 
-int	main(int argc, char *argv[], char *envp[])
+char	**getpaths(char **argv, char **envp)
 {
 	char	*env;
 	char	**paths;
 	char	*temp;
-	int		i;
+	int		i = 0;
+	int		c = 0;
 
-	i = 0;
-	env = getpath(envp);
+	while (envp[c])
+	{
+		if (strncmp(envp[c], "PATH=", 5)== 0)
+		{
+			envp[c] += 5;
+			break ;
+		}
+		c++;
+	}
+	env = **envp;
 	if (!env)
 		perror("no environment:(");
-	printf("%s\n", env);
+	printf("the environment: %s\n", env);
 	paths = ft_split(env, ':');
 	if (!paths)
 		perror("No paths:(");
@@ -217,24 +212,55 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		temp = ft_strjoin(paths[i], "/");
 		free(paths[i]);
-		paths[i] = ft_strjoin(temp, "ls");
+		paths[i] = ft_strjoin(temp, "argv[1]");
 		free(temp);
 		printf("%d: %s\n", i, paths[i]);
 		i++;
 	}
+	return (paths);
+}
 
+int	main(int argc, char *argv[], char *envp[])
+{
+	// char	*env;
+	// char	**paths;
+	// char	*temp;
+	int		i;
+
+	// i = 0;
+	// env = getpath(envp);
+	// if (!env)
+	// 	perror("no environment:(");
+	// printf("%s\n", env);
+	// paths = ft_split(env, ':');
+	// if (!paths)
+	// 	perror("No paths:(");
+	// while (paths[i])
+	// {
+	// 	temp = ft_strjoin(paths[i], "/");
+	// 	free(paths[i]);
+	// 	paths[i] = ft_strjoin(temp, "ls");
+	// 	free(temp);
+	// 	printf("%d: %s\n", i, paths[i]);
+	// 	i++;
+	// }
+
+	char	**result; 
+	result = getpaths(argv, envp);
+	for (i = 0; i < argc; i++)
+		printf("argc[%d]", i);
 	i = 0;
-	while (paths[i])
+	while (result[i])
 	{
-		if (access(paths[i], X_OK) == 0)
+		if (access(result[i], X_OK) == 0)
 		{
 			printf("The command exists and is executable\n");
-			printf("%s", paths[i]);
+			printf("%s", result[i]);
 			break ;
 		}
 		else
 		{
-			// free(paths[i]);
+			// free(result[i]);
 			i++;
 		}
 	}
