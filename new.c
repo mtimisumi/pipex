@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:32:25 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/01/29 18:47:21 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/02/07 18:58:08 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	newstring[i] = '\0';
 	return (newstring);
 }
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (n == 0)
+		return (0);
+	while (*s1 && *s2 && n > 1)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
 
 char	**getpaths(char **argv, char **envp)
 {
