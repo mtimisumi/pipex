@@ -156,6 +156,9 @@ int	main(int argc, char *argv[], char *envp[])
 			perror("cmd2 fail");
 		exit(1);
 	}
+	wait(NULL);
 
+	close (pip[READ]);
+	close (pip[WRITE]);
 	return (0);
 }
