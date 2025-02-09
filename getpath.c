@@ -134,7 +134,7 @@ int	main(int argc, char *argv[], char *envp[])
 	//childprocess 2
 	if (pid2 == CHILD)
 	{
-		file2 = open(argv[3], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		file2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (file2 == -1)
 		{
 			printf("something went wrong with file2");
@@ -145,7 +145,7 @@ int	main(int argc, char *argv[], char *envp[])
 		close(pip[WRITE]);
 		dup2(pip[READ], STDIN_FILENO);
 		close(pip[READ]);
-		cmd_args = ft_split(argv[3], ' ');
+		cmd_args = ft_split(argv[2], ' ');
 		printf("cmd2_arg[0]: %s\n", cmd_args[0]);
 		printf("cmd2_arg[1]: %s\n", cmd_args[1]);
 		printf("cmd2_arg[2]: %s\n", cmd_args[2]);
