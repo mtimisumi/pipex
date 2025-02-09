@@ -44,10 +44,10 @@ char	**get_path(char *path, char **cmd)
 	return (paths);
 }
 
-char	*get_cmd(char **argv, char **envp)
+char	*get_cmd(char ** cmd, char **argv, char **envp)
 {
 	char	*path;
-	char	**cmd;
+	// char	**cmd;
 	char	**paths;
 	int		i;
 	int		j;
@@ -56,8 +56,7 @@ char	*get_cmd(char **argv, char **envp)
 	j = 0;
 	path = get_env(argv, envp);
 	printf("path: %s\n", path);
-	printf("argv[2]: %s\n", argv[2]);
-	cmd = ft_split(argv[2], ' ');
+	// cmd = ft_split(argv[2], ' ');
 	while (cmd[j])
 	{
 		printf("cmd[%d} %s\n", j, cmd[j]);
@@ -91,14 +90,13 @@ int	main(int argc, char *argv[], char *envp[])
 	int		fd;
 	pid_t	pid1;
 	char	*cmd;
-	int		x;
+	char	**args;
 
-	x = 0;
-	if (argc != 5)
-	{
-		printf("no goo amount of arguments");
-		return (0);
-	}
+	// if (argc != 5)
+	// {
+	// 	printf("no goo amount of arguments");
+	// 	return (0);
+	// }
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
@@ -113,12 +111,18 @@ int	main(int argc, char *argv[], char *envp[])
 		printf("forking pid1 failed");
 		return (0);
 	}
+	printf("argv[2]: %s\n", argv[2]);
+	args = ft_split(argv[2], ' ');
 	if (pid1 == CHILD)
 	{
-		cmd = get_cmd(argv, envp);
+		cmd = get_cmd(args, argv, envp);
 		if (cmd != NULL)
 		{
-			execve(cmd, )
+			execve(cmd, args, envp);
+			printf("cmd: %s\n", cmd);
+			printf("args[0]: %s\n", args[0]);
+			printf("args[1]: %s\n", args[1]);
+			printf("args[2]: %s\n", args[2]);
 		}
 	}
 	// cmd = get_cmd(argv, envp);
