@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:26:10 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/02/09 15:35:38 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:46:58 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ char		**litsplit(char **arr, char const *s, char c);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-char		*get_env(char **argv, char **envp);
-char		**get_path(char *path, char **cmd);
-char	*get_cmd(char ** cmd, char **argv, char **envp);
+// char		*get_env(char **argv, char **envp);
+// char		**get_path(char *path, char **cmd);
+// char		*get_cmd(char ** cmd, char **argv, char **envp);
+char	*get_env(char *argv, char **envp);
+char	**get_path(char *path, char **cmd);
+char	*get_cmd(char *argv, char **envp);
+
 #endif
