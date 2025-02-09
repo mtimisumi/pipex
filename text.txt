@@ -1,15 +1,1 @@
-access = checks whether the calling process can access the file pathname (check for valid pathname maybe?)
-	int	access(const char *pathname, int mode);
-
-execve = current program will be replaces by new program referred to by pathname (we will use it to access the commands)
-	int	execve(const char *pathname, char *const argv[], char *const envp[]);
-
-fork = creates new process(child) by duplicating the calling process(parent). (to duplicate file1 after execve and then alter again??)
-	pid_t	fork(void);
-
-pipe = allows IPC(inter-process communication) where one process writes and one process reads.
-	int	pipe(int pipefd[2]); //[0] = read end of pipe, [1] = write end of pipe.
-
-dup2 = can change stdin/stdout to somewhere else. For exemple in combination with pipe when cmd1 is used: dup2(pipe_fd[1], STDOUT) to redirect stdout to write end of pipe,
-and dup2(pipe_fd[0], STDIN) to redirect stdin to read end of pipe.
-	int	dup2(int oldfd, int newfd);
+13
