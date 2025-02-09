@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 14:45:54 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/02/09 16:49:07 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/02/09 17:37:26 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_env(char *argv, char **envp)
 	return (env);
 }
 
-char	**get_path(char *path, char **cmd)
+char	**get_path(char *path, char *cmd)
 {
 	char	**paths;
 	char	*temp;
@@ -49,7 +49,7 @@ char	**get_path(char *path, char **cmd)
 	{
 		temp = ft_strjoin(paths[i], "/");
 		free(paths[i]);
-		paths[i] = ft_strjoin(temp, cmd[0]);
+		paths[i] = ft_strjoin(temp, cmd);
 		free(temp);
 		i++;
 	}
@@ -70,13 +70,7 @@ char	*get_cmd(char *argv, char **envp)
 	printf("path: %s\n", path);
 	printf("argv: %s\n", argv);
 	cmd = ft_split(argv, ' ');
-	while (cmd[j])
-	{
-		printf("cmd[%d} %s\n", j, cmd[j]);
-		j++;
-	}
-	printf("cmd[3]: %s\n", cmd[2]);
-	paths = get_path(path, cmd);
+	paths = get_path(path, cmd[0]);
 	while (paths[i])
 	{
 		printf("paths[%d]: %s\n", i, paths[i]);
@@ -98,10 +92,33 @@ char	*get_cmd(char *argv, char **envp)
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*cmd;
+	char	**cmd_args;
+	int		file1;
+	pid_t	pid1;
 
-	cmd = get_cmd(argv[1], envp);
-	printf("cmd1: %s\n", cmd);
-	cmd = get_cmd(argv[2], envp);
-	printf("cmd2: %s\n", cmd);
+	file1 = open(argv[1], O_RDONLY);
+	dup2(file1, STDIN_FILENO);
+	close (file1);
+	pid1 = fork();
+	if (pid1 == CHILD)
+	{
+		cmd_args = ft_split(argv[2], ' ');
+		printf("cmd_arg[0]: %s\n", cmd_args[0]);
+		printf("cmd_arg[1]: %s\n", cmd_args[1]);
+		printf("cmd_arg[2]: %s\n", cmd_args[2]);
+		cmd = get_cmd(cmd_args[0], envp);
+		exit(0);
+	}
+
+
+
+
+
+
+
+	// cmd = get_cmd(argv[1], envp);
+	// printf("cmd1: %s\n", cmd);
+	// cmd = get_cmd(argv[2], envp);
+	// printf("cmd2: %s\n", cmd);
 	return (0);
 }

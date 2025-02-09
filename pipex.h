@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:26:10 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/02/09 16:46:58 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/02/09 17:35:20 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 // char		*get_env(char **argv, char **envp);
 // char		**get_path(char *path, char **cmd);
 // char		*get_cmd(char ** cmd, char **argv, char **envp);
-char	*get_env(char *argv, char **envp);
-char	**get_path(char *path, char **cmd);
+// char	*get_env(char **envp);
+// char	**get_path(char *path, char *cmd);
+// char	*get_cmd(char *cmd, char **envp);
+
 char	*get_cmd(char *argv, char **envp);
+char	**get_path(char *path, char *cmd);
+char	*get_env(char *argv, char **envp);
+
 
 #endif
