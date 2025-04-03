@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:26:10 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/02/10 17:19:41 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:22:51 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,30 @@ char	*get_cmd(char *argv, char **envp);
 char	**get_path(char *path, char *cmd);
 char	*get_env(char **envp);
 
+void logger(const char *format, ...);
+#define HAS_READ  0x01 // Flag for read permission
+#define HAS_WRITE 0x02 // Flag for write permission
+#define HAS_EXEC  0x04 // Flag for execute permission
+int check_file_permissions(const char *path, int flags);
+#define ERR_NO_FILE   -1 // Error code for file not existing
+#define ERR_NO_PERM   -2 // Error code for lacking permissions
+#define SUCCESS        0 // Success code
+
 #endif
+
+// 00000001 int8_t char 256
+// 00000010 int8_t char 256
+// 00000111 int8_t char 256
+// 11111111 11111111 11111111 11111111 int_32_t int 
+
+// 1
+
+// 3
+
+// 7
+
+// 5
+
+// 4
+// 7
+// 1+2+4

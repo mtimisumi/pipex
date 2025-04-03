@@ -1,0 +1,5 @@
+argc: 5
+pid1 forkedpid2 forked
+
+cmd1: /usr/bin/cat
+Last child exited with code: 1

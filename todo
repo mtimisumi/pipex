@@ -1,0 +1,4 @@
+exit codes
+exit codes with bash
+memory leaks with valgrind or fsanitize
+unset path and not having segfaoult exit(EXIT_FAILURE)//it doestn free anything, stops the porgram immediately but i can use when i havent malloced anything yet
